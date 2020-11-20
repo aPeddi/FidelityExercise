@@ -14,10 +14,10 @@ struct AnimeFinderView : View {
     var body: some View {
         NavigationView {
             VStack {
-                CustomSearchBar(text: $viewModel.searchText)
+                CustomSearchBar(text: $viewModel.searchString)
                 List(viewModel.items) { item in
-                    NavigationLink(destination: AnimeDetail(displayData: item)) {
-                        AnimeCell(displayData: item)
+					NavigationLink(destination: AnimeDetail(processedData: item)) {
+						AnimeCell(processedData: item)
                     }
                 }
             }

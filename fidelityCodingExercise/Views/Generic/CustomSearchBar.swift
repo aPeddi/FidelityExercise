@@ -13,17 +13,17 @@ struct CustomSearchBar : View {
     
     var body: some View {
         ZStack {
-			Color.black.opacity(0.4)
+			Color.black.opacity(0.3)
             HStack {                
                 TextField("Search", text: $text)
-                    .padding([.leading, .trailing], 8)
-                    .frame(height: 32)
-                    .background(Color.white.opacity(0.5))
-                    .cornerRadius(8)
+                    .padding([.leading, .trailing], 6)
+                    .frame(height: 30)
+                    .background(Color.white.opacity(0.4))
+                    .cornerRadius(15)
                 }
-                  .padding([.leading, .trailing], 16)
+                  .padding([.leading, .trailing], 14)
             }
-            .frame(height: 64)
+            .frame(height: 60)
     }
 
 }
@@ -32,7 +32,7 @@ struct CustomSearchBar : View {
 struct CustomSearchBar_Previews : PreviewProvider {
     static var previews: some View {
         CustomSearchBar(text: .constant(""))
-            .previewLayout(.fixed(width: 300, height: 60))
+            .previewLayout(.fixed(width: 275, height: 55))
     }
 }
 #endif

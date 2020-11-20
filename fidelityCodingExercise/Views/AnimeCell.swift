@@ -9,21 +9,20 @@
 import SwiftUI
 
 struct AnimeCell: View {
-    @State private var animeImage: UIImage? = nil
-    private let displayData: AnimeDisplayData
+    private let processedData: AnimeProcessedData
     
-    init(displayData: AnimeDisplayData) {
-        self.displayData = displayData
+    init(processedData: AnimeProcessedData) {
+        self.processedData = processedData
     }
     
     var body: some View {
         HStack {
-			RemoteImage(url: self.displayData.thumbnail?.absoluteString ?? "")
+			RemoteImage(url: self.processedData.thumbnail?.absoluteString ?? "") ///TODO: Use placeholder imageUrl here
 						.aspectRatio(contentMode: .fit)
-						.frame(width: 50, height: 65)
+						.frame(width: 65, height: 80)
 
             VStack(alignment: .leading) {
-                Text(displayData.title)
+                Text(processedData.title)
                     .font(.subheadline)
                     .fontWeight(.medium)
 
@@ -33,23 +32,23 @@ struct AnimeCell: View {
                         .fontWeight(.semibold)
                         .lineLimit(2)
                     
-                    ForEach(displayData.ratings, id: \.self) { e in
+                    ForEach(processedData.ratings, id: \.self) { e in
                         Text(e)
                             .font(.footnote)
                     }
                 }
             }
         }
-        .frame(height: 65)
+        .frame(height: 88)
     }
 }
 
 #if DEBUG
-let animeDemoData = AnimeDisplayData(id: "1234", title: "Anime Finder Demo", ratings: ["PG-13"], summary: "Dummy Description", thumbnail: nil)
+let animeDemoData = AnimeProcessedData(id: UUID().uuidString, title: "Anime Finder Demo", ratings: ["PG-13"], summary: "Dummy Description", thumbnail: nil)
 
 struct AnimeCell_Previews : PreviewProvider {
     static var previews: some View {
-        AnimeCell(displayData: animeDemoData)
+        AnimeCell(processedData: animeDemoData)
             .previewLayout(.fixed(width: 300, height: 65))
             .previewDisplayName("AnimeCell")
     }

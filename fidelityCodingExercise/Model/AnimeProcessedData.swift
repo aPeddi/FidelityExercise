@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-struct AnimeDisplayData: Identifiable {
+struct AnimeProcessedData: Identifiable {
     let id: String
     let title: String
     let ratings: [String]
