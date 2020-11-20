@@ -28,13 +28,13 @@ struct AnimeCell: View {
 
                 HStack {
                     Text("Rated:")
-                        .font(.footnote)
+                        .font(.callout)
                         .fontWeight(.semibold)
                         .lineLimit(1)
                     
-                    ForEach(renderModel.ratings, id: \.self) { e in
-                        Text(e)
-                            .font(.footnote)
+                    ForEach(renderModel.ratings, id: \.self) { text in
+                        Text(text)
+							.font(.callout)
                     }
                 }
             }

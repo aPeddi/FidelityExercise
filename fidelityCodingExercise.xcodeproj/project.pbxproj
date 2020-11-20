@@ -118,7 +118,7 @@
 				920856D125672D1F00811B1B /* Model */,
 				920856EF2567377500811B1B /* ViewModel */,
 				920856C325672D1F00811B1B /* Views */,
-				920856CF25672D1F00811B1B /* Services */,
+				920856CF25672D1F00811B1B /* API */,
 				920856CD25672D1F00811B1B /* Extensions */,
 				9208566325670CBA00811B1B /* AppDelegate.swift */,
 				9208566525670CBA00811B1B /* SceneDelegate.swift */,
@@ -174,12 +174,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		920856CF25672D1F00811B1B /* Services */ = {
+		920856CF25672D1F00811B1B /* API */ = {
 			isa = PBXGroup;
 			children = (
 				920856D025672D1F00811B1B /* AnimeSearchService.swift */,
 			);
-			path = Services;
+			path = API;
 			sourceTree = "<group>";
 		};
 		920856D125672D1F00811B1B /* Model */ = {

@@ -25,7 +25,6 @@ struct CustomSearchBar : View {
             }
             .frame(height: 60)
     }
-
 }
 
 #if DEBUG

@@ -25,7 +25,6 @@ struct AnimeDetail : View {
 								.aspectRatio(contentMode: .fit)
 						.frame(width: UIScreen.main.bounds.width/1.5, height: UIScreen.main.bounds.width)
 								.clipShape(Rectangle())
-								.overlay(Rectangle().stroke(Color.gray, lineWidth: 1))
                     
                     Spacer()
                 }
@@ -38,7 +37,7 @@ struct AnimeDetail : View {
                 
                 if self.renderModel.ratings.first != nil {
                     Text("Rated:")
-                    .font(.footnote).fontWeight(.bold)
+                    .font(.callout).fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .lineLimit(1)
                     .padding(0)
@@ -46,7 +45,7 @@ struct AnimeDetail : View {
                     ForEach(self.renderModel.ratings, id: \.self) { rating in
                         Text(rating)
 							.multilineTextAlignment(.leading)
-                            .font(.footnote)
+                            .font(.callout)
                             .lineLimit(1)
                             .padding(1)
                     }
