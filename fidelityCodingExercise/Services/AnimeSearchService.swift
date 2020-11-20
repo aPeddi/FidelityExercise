@@ -23,7 +23,7 @@ enum AnimeSearchService {
     
     static func searchBy(string: String) -> AnyPublisher<[AnimeResult], Error> {
 		///Construct URL Request
-		var request = URLRequest(url: URL.init(string: "string") ?? dummyUrl)
+		var request = URLRequest(url: URL.init(string: baseURL + string) ?? dummyUrl)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         

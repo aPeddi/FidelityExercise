@@ -10,10 +10,10 @@ import SwiftUI
 
 ///Detail Page Implementation for Anime
 struct AnimeDetail : View {
-    private let processedData: AnimeProcessedData
+    private let renderModel: AnimeRenderModel
     
-    init(processedData: AnimeProcessedData) {
-        self.processedData = processedData
+    init(renderModel: AnimeRenderModel) {
+        self.renderModel = renderModel
     }
     
     var body: some View {
@@ -21,7 +21,7 @@ struct AnimeDetail : View {
             VStack {
                 HStack {
                     Spacer()
-					RemoteImage(url: self.processedData.thumbnail?.absoluteString ?? "")
+					RemoteImage(url: self.renderModel.thumbnail?.absoluteString ?? "")
 								.aspectRatio(contentMode: .fit)
 						.frame(width: UIScreen.main.bounds.width/1.5, height: UIScreen.main.bounds.width)
 								.clipShape(Rectangle())
@@ -30,20 +30,20 @@ struct AnimeDetail : View {
                     Spacer()
                 }
                 
-                Text(self.processedData.title)
+                Text(self.renderModel.title)
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .lineLimit(nil)
                     .padding()
                 
-                if self.processedData.ratings.first != nil {
+                if self.renderModel.ratings.first != nil {
                     Text("Rated:")
                     .font(.footnote).fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .lineLimit(1)
                     .padding(0)
                     
-                    ForEach(self.processedData.ratings, id: \.self) { rating in
+                    ForEach(self.renderModel.ratings, id: \.self) { rating in
                         Text(rating)
 							.multilineTextAlignment(.leading)
                             .font(.footnote)
@@ -52,7 +52,7 @@ struct AnimeDetail : View {
                     }
                 }                
                 
-                Text(self.processedData.summary)
+                Text(self.renderModel.summary)
                     .multilineTextAlignment(.center)
                     .lineLimit(nil)
 					.padding()
@@ -64,7 +64,7 @@ struct AnimeDetail : View {
 #if DEBUG
 struct AnimeDetail_Previews : PreviewProvider {
     static var previews: some View {
-        AnimeDetail(processedData: animeDemoData)
+		AnimeDetail(renderModel: animeDemoData)
     }
 }
 #endif

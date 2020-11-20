@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 final class AnimeFinderViewModel: ObservableObject {
-	@Published private (set) var items = [AnimeProcessedData]()
+	@Published private (set) var items = [AnimeRenderModel]()
     @Published var searchString = ""
     
     private var searchCancellable: Cancellable? {
@@ -27,7 +27,7 @@ final class AnimeFinderViewModel: ObservableObject {
         print("Init ViewModel")
         
         searchCancellable = $searchString
-            .debounce(for: 0.5, scheduler: DispatchQueue.main)
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .removeDuplicates()
 			/// Ground Rules for Search Text
 			/// - no empty values
@@ -40,20 +40,23 @@ final class AnimeFinderViewModel: ObservableObject {
                     .eraseToAnyPublisher()
             }
             .map {
-                self.processData(animes: $0)
+                self.createRenderModelItems(animes: $0)
             }
             .replaceError(with: []) ///TODO: Error Handling
             .assign(to: \.items, on: self)
     }
 
-    private func processData(animes: [AnimeResult]) -> [AnimeProcessedData]  {
-        var processedDataItems = [AnimeProcessedData]()
+	/// converts data model to a generic render model to be passed on to the view
+	/// - Parameter animes: anime items obtained from service response
+	/// - Returns: generic view display render models
+    private func createRenderModelItems(animes: [AnimeResult]) -> [AnimeRenderModel]  {
+        var renderModelItems = [AnimeRenderModel]()
         
         animes.forEach {
-			let processedData = AnimeProcessedData(id: String($0.mal_id), title: $0.title, ratings: [$0.rated ?? ""], summary: $0.synopsis, thumbnail: URL.init(string: $0.image_url))
-			processedDataItems.append(processedData)
+			let renderModel = AnimeRenderModel(id: String($0.mal_id), title: $0.title, ratings: [$0.rated ?? ""], summary: $0.synopsis, thumbnail: URL.init(string: $0.image_url))
+			renderModelItems.append(renderModel)
         }
-        return processedDataItems
+        return renderModelItems
     }
 }
 

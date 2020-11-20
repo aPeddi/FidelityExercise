@@ -16,8 +16,8 @@ struct AnimeFinderView : View {
             VStack {
                 CustomSearchBar(text: $viewModel.searchString)
                 List(viewModel.items) { item in
-					NavigationLink(destination: AnimeDetail(processedData: item)) {
-						AnimeCell(processedData: item)
+					NavigationLink(destination: AnimeDetail(renderModel: item)) {
+						AnimeCell(renderModel: item)
                     }
                 }
             }
